@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NutriCalc Pro — Calculadora Nutricional Clínica</title>
+  <meta name="description" content="Calculadora de calorías diarias basada en medidas antropométricas. Distribución por tiempos de comida con gramaje de macronutrientes y micronutrientes."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">⚕️</span>
+        <div>
+          <span class="logo-title">NutriCalc Pro</span>
+          <span class="logo-sub">Calculadora Nutricional Clínica</span>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <a href="#form-section">Datos</a>
+        <a href="#results-section">Resultados</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Planificación Nutricional <span class="gradient-text">Personalizada</span></h1>
+        <p>Calcula las calorías diarias de tu paciente basándote en sus medidas antropométricas. Distribución detallada por tiempo de comida con gramaje exacto de macronutrientes y micronutrientes.</p>
+      </div>
+      <div class="hero-badges">
+        <span class="badge">📏 Antropometría</span>
+        <span class="badge">🍽️ Distribución por comidas</span>
+        <span class="badge">⚖️ Gramaje exacto</span>
+        <span class="badge">🧬 Macro y micronutrientes</span>
+      </div>
+    </section>
+
+    <!-- FORM -->
+    <section class="form-section" id="form-section">
+      <div class="container">
+        <div class="form-card">
+          <h2 class="section-title">📋 Datos del Paciente</h2>
+
+          <div class="form-grid">
+            <!-- Datos generales -->
+            <div class="form-group-title">Datos Generales</div>
+
+            <div class="form-group">
+              <label for="patient-name">Nombre del Paciente</label>
+              <input type="text" id="patient-name" placeholder="Ej. María García" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="age">Edad (años)</label>
+                <input type="number" id="age" min="1" max="120" placeholder="30" />
+              </div>
+              <div class="form-group">
+                <label for="sex">Sexo Biológico</label>
+                <select id="sex">
+                  <option value="">Seleccionar…</option>
+                  <option value="male">Masculino</option>
+                  <option value="female">Femenino</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Medidas Antropométricas -->
+            <div class="form-group-title">Medidas Antropométricas</div>
+
+            <div class="form-row trio">
+              <div class="form-group">
+                <label for="weight">Peso actual (kg)</label>
+                <input type="number" id="weight" min="1" step="0.1" placeholder="70.0" />
+              </div>
+              <div class="form-group">
+                <label for="height">Talla (cm)</label>
+                <input type="number" id="height" min="50" max="250" placeholder="170" />
+              </div>
+              <div class="form-group">
+                <label for="ideal-weight">Peso ideal (kg) <span class="optional">(opc.)</span></label>
+                <input type="number" id="ideal-weight" min="1" step="0.1" placeholder="Auto" />
+              </div>
+            </div>
+
+            <div class="form-row trio">
+              <div class="form-group">
+                <label for="waist">Cintura (cm) <span class="optional">(opc.)</span></label>
+                <input type="number" id="waist" step="0.1" placeholder="80" />
+              </div>
+              <div class="form-group">
+                <label for="hip">Cadera (cm) <span class="optional">(opc.)</span></label>
+                <input type="number" id="hip" step="0.1" placeholder="95" />
+              </div>
+              <div class="form-group">
+                <label for="wrist">Muñeca (cm) <span class="optional">(opc.)</span></label>
+                <input type="number" id="wrist" step="0.1" placeholder="16" />
+              </div>
+            </div>
+
+            <!-- Actividad y fórmula -->
+            <div class="form-group-title">Actividad y Cálculo</div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="formula">Fórmula de TMB</label>
+                <select id="formula">
+                  <option value="mifflin">Mifflin-St Jeor (recomendada)</option>
+                  <option value="harris">Harris-Benedict</option>
+                  <option value="who">OMS / WHO</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="activity">Factor de Actividad Física</label>
+                <select id="activity">
+                  <option value="1.2">Sedentario (poco o ningún ejercicio)</option>
+                  <option value="1.375">Levemente activo (1–3 días/sem)</option>
+                  <option value="1.55" selected>Moderadamente activo (3–5 días/sem)</option>
+                  <option value="1.725">Muy activo (6–7 días/sem)</option>
+                  <option value="1.9">Extremadamente activo (atleta)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="goal">Objetivo Nutricional</label>
+                <select id="goal">
+                  <option value="maintain">Mantenimiento de peso</option>
+                  <option value="lose_mild">Pérdida leve (-250 kcal)</option>
+                  <option value="lose">Pérdida de peso (-500 kcal)</option>
+                  <option value="lose_fast">Pérdida agresiva (-750 kcal)</option>
+                  <option value="gain">Ganancia muscular (+300 kcal)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="diet-type">Distribución de Macros</label>
+                <select id="diet-type">
+                  <option value="balanced">Balanceada (50/20/30)</option>
+                  <option value="low-carb">Baja en carbohidratos (30/35/35)</option>
+                  <option value="high-protein">Alta en proteína (45/30/25)</option>
+                  <option value="mediterranean">Mediterránea (55/20/25)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Distribución de comidas -->
+            <div class="form-group-title">Distribución de Comidas</div>
+            <div class="meal-distribution" id="meal-distribution">
+              <div class="meal-item">
+                <label>🌅 Desayuno</label>
+                <input type="number" class="meal-pct" id="meal-breakfast" value="25" min="0" max="100"/>
+                <span class="pct-label">%</span>
+              </div>
+              <div class="meal-item">
+                <label>🍎 Colación AM</label>
+                <input type="number" class="meal-pct" id="meal-snack-am" value="10" min="0" max="100"/>
+                <span class="pct-label">%</span>
+              </div>
+              <div class="meal-item">
+                <label>☀️ Almuerzo</label>
+                <input type="number" class="meal-pct" id="meal-lunch" value="30" min="0" max="100"/>
+                <span class="pct-label">%</span>
+              </div>
+              <div class="meal-item">
+                <label>🍊 Colación PM</label>
+                <input type="number" class="meal-pct" id="meal-snack-pm" value="10" min="0" max="100"/>
+                <span class="pct-label">%</span>
+              </div>
+              <div class="meal-item">
+                <label>🌙 Cena</label>
+                <input type="number" class="meal-pct" id="meal-dinner" value="25" min="0" max="100"/>
+                <span class="pct-label">%</span>
+              </div>
+              <div class="meal-total-indicator">
+                Total: <span id="meal-total">100</span>% 
+                <span id="meal-total-status" class="status-ok">✔</span>
+              </div>
+            </div>
+
+            <!-- Condición clínica -->
+            <div class="form-group-title">Condición Clínica (opcional)</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="clinical">Factor de Estrés / Condición</label>
+                <select id="clinical">
+                  <option value="1.0">Sin patología / Normal</option>
+                  <option value="1.1">Cirugía electiva leve (×1.10)</option>
+                  <option value="1.2">Infección moderada (×1.20)</option>
+                  <option value="1.3">Trauma / Cirugía mayor (×1.30)</option>
+                  <option value="1.5">Quemaduras graves / UCI (×1.50)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="pathology">Patología de base</label>
+                <select id="pathology">
+                  <option value="none">Ninguna</option>
+                  <option value="diabetes">Diabetes Mellitus tipo 2</option>
+                  <option value="hypertension">Hipertensión arterial</option>
+                  <option value="renal">Enfermedad renal crónica</option>
+                  <option value="obesity">Obesidad</option>
+                  <option value="pregnancy">Embarazo</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-calculate" id="btn-calculate" onclick="calculate()">
+            ⚡ Calcular Plan Nutricional
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="results-section" id="results-section" style="display:none">
+      <div class="container">
+
+        <!-- Summary cards -->
+        <h2 class="section-title results-header">📊 Resultados del Plan Nutricional</h2>
+        <div id="patient-header-card" class="patient-header-card"></div>
+
+        <div class="summary-cards" id="summary-cards"></div>
+
+        <!-- BMI / IMC -->
+        <div class="bmi-card" id="bmi-card"></div>
+
+        <!-- Macros total -->
+        <div class="macro-section">
+          <h3 class="sub-title">🧬 Distribución de Macronutrientes Diarios</h3>
+          <div class="macro-grid" id="macro-grid"></div>
+          <div class="macro-bar-wrap">
+            <div class="macro-bar" id="macro-bar"></div>
+          </div>
+        </div>
+
+        <!-- Meals -->
+        <div class="meals-section">
+          <h3 class="sub-title">🍽️ Plan de Alimentación por Tiempo de Comida</h3>
+          <div class="meals-grid" id="meals-grid"></div>
+        </div>
+
+        <!-- Micronutrients -->
+        <div class="micro-section">
+          <h3 class="sub-title">🔬 Micronutrientes — Recomendaciones Diarias (DRI)</h3>
+          <div class="micro-grid" id="micro-grid"></div>
+        </div>
+
+        <!-- Clinical notes -->
+        <div class="clinical-notes" id="clinical-notes"></div>
+
+        <!-- Print button -->
+        <div class="print-area">
+          <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+          <button class="btn-recalc" onclick="recalculate()">↩ Recalcular</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>NutriCalc Pro · Uso clínico orientativo · Siempre consultar con profesional de salud.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
